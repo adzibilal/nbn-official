@@ -1,26 +1,27 @@
 import Navbar from '@/components/Navbar'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
+import 'react-alice-carousel/lib/alice-carousel.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const montserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'NBN Official',
-  description: 'Model Polos itu Elegan.',
+    title: 'NBN Official',
+    description: 'Model Polos itu Elegan.'
 }
 
 export default function RootLayout({
-  children,
+    children
 }: {
-  children: React.ReactNode
+    children: React.ReactNode
 }) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar/>
-        {children}
-        </body>
-    </html>
-  )
+    return (
+        <html lang='en'>
+            <body className={montserrat.className}>
+                <Navbar />
+                {children}
+            </body>
+        </html>
+    )
 }

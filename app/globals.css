@@ -7,3 +7,12 @@
   margin: 0 auto;
   @apply max-xl:!mx-5;
 }
+
+.nav-link{
+  @apply uppercase text-sm;
+  letter-spacing: 3px;
+}
+
+.img-hero{
+  @apply w-full aspect-video object-cover
+}
