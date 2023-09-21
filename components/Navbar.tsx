@@ -1,0 +1,53 @@
+import { NextPage } from 'next'
+import Link from 'next/link'
+
+interface Props {}
+
+const Navbar: NextPage<Props> = ({}) => {
+    return (
+        <>
+        <div className="bg-red-600 text-center py-2 text-sm font-semibold text-white">Code "DISC5" for 5k off min. purchase 125k</div>
+        <div className='bg-white sticky top-0'>
+            <div className=' max-container flex items-center justify-center flex-col pt-3 pb-3'>
+                <div className=''>
+                    <img src='/images/logo.png' alt='' className='w-[60px]' />
+                </div>
+            </div>
+            <div className='bg-gray-50 py-3 flex items-center justify-center gap-5'>
+                <Link href='/'>
+                    <div className='nav-link group transition duration-300'>Sweater
+                    <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-sky-600"></span>
+                    </div>
+                </Link>
+                <Link href='/'>
+                    <div className='nav-link group transition duration-300'>Jaket
+                    <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-sky-600"></span>
+                    </div>
+                </Link>
+                <Link href='/'>
+                    <div className='nav-link group transition duration-300'>Rajut
+                    <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-sky-600"></span>
+                    </div>
+                </Link>
+                <Link href='/'>
+                    <div className='nav-link group transition duration-300'>Dress & One Set
+                    <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-sky-600"></span>
+                    </div>
+                </Link>
+                <Link href='/'>
+                    <div className='nav-link group transition duration-300'>Faux Fur
+                    <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-sky-600"></span>
+                    </div>
+                </Link>
+                <Link href='/'>
+                    <div className='nav-link group transition duration-300'>New Product
+                    <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-sky-600"></span>
+                    </div>
+                </Link>
+            </div>
+        </div>
+        </>
+    )
+}
+
+export default Navbar
