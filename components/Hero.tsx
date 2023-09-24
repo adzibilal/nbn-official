@@ -29,8 +29,18 @@ const Hero: NextPage<Props> = ({}) => {
     ]
 
     return (
-        <div className=''>
-            <AliceCarousel mouseTracking items={items} />
+        <div className='hero-slider'>
+            <AliceCarousel
+                autoPlay
+                autoPlayStrategy='none'
+                autoPlayInterval={8000}
+                animationDuration={1000}
+                animationType='slide'
+                infinite
+                mouseTracking
+                disableButtonsControls
+                items={items}
+            />
         </div>
     )
 }
