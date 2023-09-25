@@ -9,8 +9,7 @@ export function useThemes() {
         { id: 'system', name: 'Default Sistem' }
     ]
 
-    const savedTheme =
-        typeof window !== 'undefined' ? localStorage.getItem('app_theme') : ''
+    const savedTheme = window ? localStorage.getItem('app_theme') : ''
     const [theme, setTheme] = useState<string>(savedTheme || themes[0].id)
 
     const getDefaultTheme = () => {
@@ -20,7 +19,7 @@ export function useThemes() {
     }
 
     const changeTheme = (selectedTheme: string) => {
-        if (typeof window !== 'undefined') {
+        if (window) {
             localStorage.setItem('app_theme', selectedTheme)
         }
         const actions: Record<string, () => void> = {
