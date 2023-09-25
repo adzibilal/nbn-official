@@ -11,7 +11,7 @@ interface Props {}
 
 const Footer: NextPage<Props> = ({}) => {
     return (
-        <div className='border-t border-gray-300'>
+        <div className='border-t border-gray-300 dark:border-zinc-800'>
             <div className='max-container grid grid-cols-[3fr_2fr_2fr] gap-5 py-5 max-md:grid-cols-1'>
                 <div className=''>
                     <img
@@ -19,7 +19,7 @@ const Footer: NextPage<Props> = ({}) => {
                         alt=''
                         className='w-[100px]'
                     />
-                    <p className='text-gray-500 mt-3 italic text-sm'>
+                    <p className='text-gray-500 mt-3 italic text-sm dark:text-zinc-400'>
                         {footerData.tagline}
                     </p>
                 </div>
@@ -46,9 +46,9 @@ const Footer: NextPage<Props> = ({}) => {
                     ))}
                 </div>
             </div>
-            <div className='border-t border-gray-300'>
+            <div className='border-t border-gray-300 dark:border-zinc-800'>
                 <div className='max-container flex justify-between items-center py-3 max-md:flex-col gap-3 max-sm:items-start'>
-                    <div className='flex gap-3 items-center text-xs font-semibold text-gray-400 max-sm:flex-col max-sm:items-start'>
+                    <div className='flex gap-3 items-center text-xs font-semibold text-gray-400 max-sm:flex-col max-sm:items-start dark:text-zinc-400'>
                         © 2023, NBN Official
                         {footerCopyrightLinks.map((link, index) => (
                             <Link

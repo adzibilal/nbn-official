@@ -82,7 +82,7 @@
 }
 
 .link-footer {
-  @apply text-sm border-b border-transparent hover:border-b hover:border-yellow-600 cursor-pointer w-max;
+  @apply text-sm border-b border-transparent hover:border-b hover:border-yellow-600 cursor-pointer w-max dark:text-zinc-400;
 }
 
 .title-footer {

@@ -4,18 +4,17 @@ type Theme = { id: string; name: string }
 
 export function useThemes() {
     const themes: Theme[] = [
-        { id: 'system', name: 'Default Sistem' },
         { id: 'light', name: 'Terang' },
-        { id: 'dark', name: 'Gelap' }
+        { id: 'dark', name: 'Gelap' },
+        { id: 'system', name: 'Default Sistem' }
     ]
-
-    const [theme, setTheme] = useState<string>(themes[0].id)
+    const savedTheme = localStorage.getItem('app_theme')
+    const [theme, setTheme] = useState<string>(savedTheme || themes[0].id)
 
     const getDefaultTheme = () => {
         const savedTheme = localStorage.getItem('app_theme')
         if (savedTheme) setTheme(savedTheme)
-
-        changeTheme(savedTheme || 'system')
+        if (!savedTheme) changeTheme('light')
     }
 
     const changeTheme = (selectedTheme: string) => {
@@ -27,7 +26,7 @@ export function useThemes() {
             },
             dark: () => {
                 document.documentElement.classList.add('dark')
-                document.documentElement.setAttribute('data-theme', 'luxury')
+                document.documentElement.setAttribute('data-theme', 'luxury') // Ubah ke 'luxury'
             },
             system: () => {
                 const isDark = window.matchMedia(
@@ -49,9 +48,14 @@ export function useThemes() {
         actions[selectedTheme]()
     }
 
+    // Ganti tema saat komponen dimuat atau saat preferensi sistem berubah
     useEffect(() => {
         changeTheme(theme)
     }, [theme])
 
-    return { themes, theme, getDefaultTheme, changeTheme }
+    const isDarkPreferred = window.matchMedia(
+        '(prefers-color-scheme: dark)'
+    ).matches
+
+    return { themes, theme, getDefaultTheme, changeTheme, isDarkPreferred }
 }

@@ -8,25 +8,31 @@ import { Menu, Moon, Search, Sun } from 'react-feather'
 interface Props {}
 
 const Navbar: NextPage<Props> = ({}) => {
-    const { getDefaultTheme, theme, changeTheme } = useThemes()
-    const [isDarkTheme, setIsDarkTheme] = useState(false)
+    const { getDefaultTheme, theme, changeTheme, isDarkPreferred } = useThemes()
+    const [isDarkTheme, setIsDarkTheme] = useState(
+        theme === 'dark' || (theme === 'system' && isDarkPreferred)
+    )
 
     useEffect(() => {
-        changeTheme('light')
+        getDefaultTheme() // Mengatur tema default dari localStorage
+        setIsDarkTheme(
+            theme === 'dark' || (theme === 'system' && isDarkPreferred)
+        )
     }, [])
 
     const toggleTheme = () => {
         setIsDarkTheme(!isDarkTheme)
-        const newTheme = isDarkTheme ? 'light' : 'dark'
+        const newTheme = isDarkTheme ? 'light' : 'dark' // Mengubah tema
         changeTheme(newTheme)
     }
+
     return (
         <>
-            <div className='bg-red-600  text-center py-2 text-sm font-semibold text-white'>
+            <div className='bg-red-600 text-center py-2 text-sm font-semibold text-white'>
                 Code "DISC5" for 5k off min. purchase 125k
             </div>
             <div className='bg-white dark:bg-zinc-950 sticky top-0 z-50'>
-                <div className=' max-container flex items-center justify-between pt-3 pb-3'>
+                <div className='max-container flex items-center justify-between pt-3 pb-3'>
                     <div className='menu text-yellow-600 cursor-pointer opacity-0 max-sm:opacity-100'>
                         <Menu />
                     </div>
@@ -41,7 +47,9 @@ const Navbar: NextPage<Props> = ({}) => {
                         <div className='search text-yellow-600 cursor-pointer'>
                             <Search />
                         </div>
-                        <div className='switcher text-yellow-600 cursor-pointer' onClick={toggleTheme}>
+                        <div
+                            className='switcher text-yellow-600 cursor-pointer'
+                            onClick={toggleTheme}>
                             {isDarkTheme ? <Sun /> : <Moon />}
                         </div>
                     </div>
