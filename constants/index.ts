@@ -42,3 +42,4 @@ export const footerCopyrightLinks = [
     { text: 'Shipping policy', href: '/' },
     { text: 'Contact information', href: '/' }
 ]
+

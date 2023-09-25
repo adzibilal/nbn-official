@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
+import ProductCard from './ProductCard'
 
 interface Props {}
 
@@ -9,95 +10,37 @@ const ProductPerCategoryHome: NextPage<Props> = ({}) => {
             <div className='title-section mb-14'>Categories</div>
 
             <div className='grid grid-cols-4 gap-3 max-md:grid-cols-2 max-sm:grid-cols-1'>
-                <div className='card-product'>
-                    <div className='img-box'>
-                        <Image
-                            src='/images/product/1.jpeg'
-                            height={300}
-                            width={300}
-                            alt=''
-                            className='img-card'
-                        />
-                    </div>
-                    <div className='title-card'>
-                        Baju Atasan Wanita Terbaru Polo Crop Top Premium
-                    </div>
-
-                    <div className='flex items-baseline gap-1'>
-                        <div className='price'>Rp54.000</div>
-                        <div className='disc-price'>Rp90.000</div>
-                    </div>
-
-                    <div className='disc-badge'>40% OFF</div>
-                </div>
-                <div className='card-product'>
-                    <div className='img-box'>
-                        <Image
-                            src='/images/product/1.jpeg'
-                            height={300}
-                            width={300}
-                            alt=''
-                            className='img-card'
-                        />
-                    </div>
-                    <div className='title-card'>
-                        Baju Atasan Wanita Terbaru Polo Crop Top Premium
-                    </div>
-
-                    <div className='flex items-baseline gap-1'>
-                        <div className='price'>Rp54.000</div>
-                        <div className='disc-price'>Rp90.000</div>
-                    </div>
-
-                    <div className='disc-badge'>40% OFF</div>
-                </div>
-                <div className='card-product'>
-                    <div className='img-box'>
-                        <Image
-                            src='/images/product/1.jpeg'
-                            height={300}
-                            width={300}
-                            alt=''
-                            className='img-card'
-                        />
-                    </div>
-                    <div className='title-card'>
-                        Baju Atasan Wanita Terbaru Polo Crop Top Premium
-                    </div>
-
-                    <div className='flex items-baseline gap-1'>
-                        <div className='price'>Rp54.000</div>
-                        <div className='disc-price'>Rp90.000</div>
-                    </div>
-
-                    <div className='disc-badge'>40% OFF</div>
-                </div>
-                <div className='card-product'>
-                    <div className='img-box'>
-                        <Image
-                            src='/images/product/1.jpeg'
-                            height={300}
-                            width={300}
-                            alt=''
-                            className='img-card'
-                        />
-                    </div>
-                    <div className='title-card'>
-                        Baju Atasan Wanita Terbaru Polo Crop Top Premium
-                    </div>
-
-                    <div className='flex items-baseline gap-1'>
-                        <div className='price'>Rp54.000</div>
-                        <div className='disc-price'>Rp90.000</div>
-                    </div>
-
-                    <div className='disc-badge'>40% OFF</div>
-                </div>
+                <ProductCard
+                    imageUrl='/images/product/1.jpeg'
+                    title='Baju Atasan Wanita Terbaru Polo Crop Top Premium'
+                    price='Rp54.000'
+                    discountPrice='Rp90.000'
+                    discount='40% OFF'
+                />
+                <ProductCard
+                    imageUrl='/images/product/1.jpeg'
+                    title='Baju Atasan Wanita Terbaru Polo Crop Top Premium'
+                    price='Rp54.000'
+                    discountPrice='Rp90.000'
+                    discount='40% OFF'
+                />
+                <ProductCard
+                    imageUrl='/images/product/1.jpeg'
+                    title='Baju Atasan Wanita Terbaru Polo Crop Top Premium'
+                    price='Rp54.000'
+                    discountPrice='Rp90.000'
+                    discount='40% OFF'
+                />
+                <ProductCard
+                    imageUrl='/images/product/1.jpeg'
+                    title='Baju Atasan Wanita Terbaru Polo Crop Top Premium'
+                    price='Rp54.000'
+                    discountPrice='Rp90.000'
+                    discount='40% OFF'
+                />
             </div>
 
-            <div className="btn-primary mx-auto mt-10">
-                View All
-            </div>
+            <div className='btn-primary mx-auto mt-10'>View All</div>
         </div>
     )
 }

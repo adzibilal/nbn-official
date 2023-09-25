@@ -44,3 +44,20 @@ export function parseInputDate(date: Date) {
     const val = dateObject.toISOString().split('T')[0]
     return val
 }
+
+export function toggleDarkmode() {
+    const darkmode = localStorage.getItem('color-mode')
+    if (darkmode == 'light') {
+        document.documentElement.classList.add('dark')
+        document.documentElement.setAttribute('data-theme', 'black')
+        localStorage.setItem('color-mode', 'dark')
+    } else {
+        document.documentElement.classList.remove('dark')
+        document.documentElement.setAttribute('data-theme', 'light')
+        localStorage.setItem('color-mode', 'light')
+    }
+}
+
+export function getStorage(key: string) {
+    return localStorage.getItem(key) || ''
+}

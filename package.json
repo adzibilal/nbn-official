@@ -27,5 +27,8 @@
     "react-feather": "^2.0.10",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "daisyui": "^3.7.7"
   }
 }

@@ -1,19 +1,34 @@
+'use client'
+import { useThemes } from '@/composables/useThemes'
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { Menu, Search } from 'react-feather'
+import { useEffect, useState } from 'react'
+import { Menu, Moon, Search, Sun } from 'react-feather'
 
 interface Props {}
 
 const Navbar: NextPage<Props> = ({}) => {
+    const { getDefaultTheme, theme, changeTheme } = useThemes()
+    const [isDarkTheme, setIsDarkTheme] = useState(false)
+
+    useEffect(() => {
+        changeTheme('light')
+    }, [])
+
+    const toggleTheme = () => {
+        setIsDarkTheme(!isDarkTheme)
+        const newTheme = isDarkTheme ? 'light' : 'dark'
+        changeTheme(newTheme)
+    }
     return (
         <>
-            <div className='bg-red-600 text-center py-2 text-sm font-semibold text-white'>
+            <div className='bg-red-600  text-center py-2 text-sm font-semibold text-white'>
                 Code "DISC5" for 5k off min. purchase 125k
             </div>
-            <div className='bg-white sticky top-0 z-50'>
+            <div className='bg-white dark:bg-zinc-950 sticky top-0 z-50'>
                 <div className=' max-container flex items-center justify-between pt-3 pb-3'>
                     <div className='menu text-yellow-600 cursor-pointer opacity-0 max-sm:opacity-100'>
-                        <Menu/>
+                        <Menu />
                     </div>
                     <div className=''>
                         <img
@@ -22,11 +37,16 @@ const Navbar: NextPage<Props> = ({}) => {
                             className='w-[60px]'
                         />
                     </div>
-                    <div className="search text-yellow-600 cursor-pointer">
-                        <Search/>
+                    <div className='flex gap-5'>
+                        <div className='search text-yellow-600 cursor-pointer'>
+                            <Search />
+                        </div>
+                        <div className='switcher text-yellow-600 cursor-pointer' onClick={toggleTheme}>
+                            {isDarkTheme ? <Sun /> : <Moon />}
+                        </div>
                     </div>
                 </div>
-                <div className='bg-gray-50 py-3 flex items-center justify-center gap-5 max-sm:hidden'>
+                <div className='bg-gray-50 dark:bg-zinc-900 py-3 flex items-center justify-center gap-5 max-sm:hidden'>
                     <Link href='/'>
                         <div className='nav-link group transition duration-300'>
                             Sweater
