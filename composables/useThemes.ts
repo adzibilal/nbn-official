@@ -1,3 +1,4 @@
+'use client'
 import { useState, useEffect } from 'react'
 
 type Theme = { id: string; name: string }
@@ -9,7 +10,7 @@ export function useThemes() {
         { id: 'system', name: 'Default Sistem' }
     ]
 
-    const savedTheme = window ? localStorage.getItem('app_theme') : ''
+    const savedTheme = localStorage.getItem('app_theme')
     const [theme, setTheme] = useState<string>(savedTheme || themes[0].id)
 
     const getDefaultTheme = () => {
@@ -19,9 +20,8 @@ export function useThemes() {
     }
 
     const changeTheme = (selectedTheme: string) => {
-        if (window) {
-            localStorage.setItem('app_theme', selectedTheme)
-        }
+        localStorage.setItem('app_theme', selectedTheme)
+
         const actions: Record<string, () => void> = {
             light: () => {
                 document.documentElement.classList.remove('dark')
@@ -51,7 +51,6 @@ export function useThemes() {
         actions[selectedTheme]()
     }
 
-    // Ganti tema saat komponen dimuat atau saat preferensi sistem berubah
     useEffect(() => {
         changeTheme(theme)
     }, [theme])
