@@ -8,7 +8,9 @@ export function useThemes() {
         { id: 'dark', name: 'Gelap' },
         { id: 'system', name: 'Default Sistem' }
     ]
-    const savedTheme = localStorage.getItem('app_theme')
+
+    const savedTheme =
+        typeof window !== 'undefined' ? localStorage.getItem('app_theme') : ''
     const [theme, setTheme] = useState<string>(savedTheme || themes[0].id)
 
     const getDefaultTheme = () => {
@@ -18,7 +20,9 @@ export function useThemes() {
     }
 
     const changeTheme = (selectedTheme: string) => {
-        localStorage.setItem('app_theme', selectedTheme)
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('app_theme', selectedTheme)
+        }
         const actions: Record<string, () => void> = {
             light: () => {
                 document.documentElement.classList.remove('dark')
