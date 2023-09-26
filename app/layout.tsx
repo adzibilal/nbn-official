@@ -3,8 +3,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import 'react-alice-carousel/lib/alice-carousel.css'
-import Favicon from '/public/images/logo.png'
-import { useEffect } from 'react'
+import Footer from '@/components/Footer'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -18,12 +17,12 @@ export default function RootLayout({
 }: {
     children: React.ReactNode
 }) {
-
     return (
         <html lang='en' data-theme=''>
             <body className={montserrat.className}>
                 <Navbar />
                 {children}
+                <Footer />
             </body>
         </html>
     )

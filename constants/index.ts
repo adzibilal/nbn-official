@@ -43,3 +43,18 @@ export const footerCopyrightLinks = [
     { text: 'Contact information', href: '/' }
 ]
 
+// Tipe data untuk merepresentasikan tautan
+export interface NavLink {
+    text: string
+    href: string
+}
+
+// Daftar tautan yang akan digunakan di navbar
+export const navLinks: NavLink[] = [
+    { text: 'Sweater', href: '/collections?category=sweater' },
+    { text: 'Jaket', href: '/collections?category=jaket' },
+    { text: 'Rajut', href: '/collections?category=rajut' },
+    { text: 'Dress & One Set', href: '/collections?category=dressoneset' },
+    { text: 'Faux Fur', href: '/collections?category=fauxfur' },
+    { text: 'New Product', href: '/collections?sort=new' }
+]

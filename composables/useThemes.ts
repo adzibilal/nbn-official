@@ -10,11 +10,15 @@ export function useThemes() {
         { id: 'system', name: 'Default Sistem' }
     ]
 
-    const savedTheme = localStorage.getItem('app_theme')
+    // Check if localStorage is available before using it
+    const savedTheme =
+        typeof window !== 'undefined' && localStorage.getItem('app_theme')
     const [theme, setTheme] = useState<string>(savedTheme || themes[0].id)
 
     const getDefaultTheme = () => {
-        const savedTheme = localStorage.getItem('app_theme')
+        // Check if localStorage is available before using it
+        const savedTheme =
+            typeof window !== 'undefined' && localStorage.getItem('app_theme')
         if (savedTheme) setTheme(savedTheme)
         if (!savedTheme) changeTheme('light')
     }
@@ -55,9 +59,6 @@ export function useThemes() {
         changeTheme(theme)
     }, [theme])
 
-    const isDarkPreferred = window.matchMedia(
-        '(prefers-color-scheme: dark)'
-    ).matches
 
-    return { themes, theme, getDefaultTheme, changeTheme, isDarkPreferred }
+    return { themes, theme, getDefaultTheme, changeTheme }
 }
