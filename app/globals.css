@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  @apply bg-white
+body {
+  @apply bg-white;
 }
 
 .max-container {
@@ -94,21 +94,21 @@ body{
 }
 
 .social-item {
-  @apply w-[30px] h-[30px] rounded-full p-2 bg-gray-200 cursor-pointer hover:bg-yellow-600 transition-all hover:p-[7px]
+  @apply w-[30px] h-[30px] rounded-full p-2 bg-gray-200 cursor-pointer hover:bg-yellow-600 transition-all hover:p-[7px];
 }
 
-.social-item img{
-  @apply w-full
+.social-item img {
+  @apply w-full;
 }
 
-.social-item:hover img{
-  @apply invert
+.social-item:hover img {
+  @apply invert;
 }
 
-.mobile-menu{
-  @apply max-sm:flex-col max-h-[0%] h-0 p-0 transition-all overflow-hidden
+.mobile-menu {
+  @apply max-sm:flex-col max-h-0 h-[0%] p-0 transition-all overflow-hidden;
 }
 
-.mobile-menu.show{
-  @apply max-h-[100%] h-[100%] p-3
+.mobile-menu.show {
+  @apply max-h-max h-[100%] p-3;
 }
