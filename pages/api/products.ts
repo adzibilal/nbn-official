@@ -53,16 +53,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                     totalPages,
                     currentPage: pageNumber
                 })
-            } else if (category !== 'All') {
-                // If a category is specified, filter products by category
+            } else if (category && category !== 'All') {
+                //@ts-ignore
+                const categoryArray = category.split(',')
+                console.error(categoryArray)
+
                 const products = await Product.find({
-                    category: { $in: [category] } // Use $in to check if category exists in the array
+                    category: { $in: categoryArray } // Menggunakan $in untuk mencocokkan kategori dalam array
                 })
 
                 const totalProducts = products.length
                 const totalPages = Math.ceil(totalProducts / itemsPerPage)
+
                 const paginatedProducts = await Product.find({
-                    category: { $in: [category] } // Use $in to check if category exists in the array
+                    category: { $in: categoryArray } // Menggunakan $in untuk mencocokkan kategori dalam array
                 })
                     .skip((pageNumber - 1) * itemsPerPage)
                     .limit(itemsPerPage)
@@ -91,6 +95,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 })
             }
         } catch (error) {
+            console.error(error)
             res.status(500).json({ error: 'Server error' })
         }
     } else if (req.method === 'POST') {

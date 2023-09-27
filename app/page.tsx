@@ -10,9 +10,6 @@ export default function Home() {
             <Hero />
             <NewProductHome />
             <BannerCta />
-            <ProductPerCategoryHome />
-            <BannerCta />
-            <ProductPerCategoryHome />
         </main>
     )
 }

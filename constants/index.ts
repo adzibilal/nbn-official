@@ -10,11 +10,8 @@ export const footerData = {
         { text: 'FAQs', href: '/' }
     ],
     onlineOperationLinks: [
-        { text: 'Exchanges & Returns', href: '/' },
-        { text: 'Payment Information', href: '/' },
-        { text: 'How To Track Your Order', href: '/' },
-        { text: 'How To Use Discount Code', href: '/' },
-        { text: 'FAQs', href: '/' }
+        { text: 'Senin - Jumat 09.00 - 16.00', href: '/' },
+        { text: 'Sabtu - Minggu (Slow Respon)', href: '/' },
     ]
 }
 
@@ -55,8 +52,7 @@ export const navLinks: NavLink[] = [
     { text: 'Sweater', href: '/collections?category=Sweater' },
     { text: 'Jaket', href: '/collections?category=Jaket' },
     { text: 'Rajut', href: '/collections?category=Rajut' },
-    { text: 'Dress', href: '/collections?category=Dress' },
-    { text: 'One Set', href: '/collections?category=One%20Set' },
+    { text: 'Dress & One Set', href: '/collections?category=Dress,One%20Set' },
     { text: 'Faux Fur', href: '/collections?category=Faux%20Fur' },
     { text: 'New Product', href: '/collections?category=New%20Product' }
 ]

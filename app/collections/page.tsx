@@ -54,31 +54,32 @@ const Page: NextPage<Props> = ({}) => {
         fetchData()
     }, [currentPage, category])
 
-    if (loading) {
-        return (
-            <div className='w-full h-screen flex items-center justify-center'>
-                <span className='loading loading-bars loading-lg'></span>
-            </div>
-        )
-    }
-
     return (
         <>
             <div className='max-container grid grid-cols-[250px_1fr] gap-3 py-3 min-h-screen items-start max-md:grid-cols-1'>
                 <FilterCollections />
-                <div className='grid grid-cols-4 gap-3 max-xl:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1'>
-                    {products.map(product => (
-                        <ProductCard
-                            key={product._id}
-                            id={product._id}
-                            imageUrl={product.image[0]}
-                            title={product.judul}
-                            price={parseToRupiah(product.discount)}
-                            discountPrice={parseToRupiah(product.price)}
-                            discount={getPercentageDiscount(product.price, product.discount)}
-                        />
-                    ))}
-                </div>
+                {loading ? (
+                    <div className='w-full h-screen flex items-center justify-center'>
+                        <span className='loading loading-bars loading-lg'></span>
+                    </div>
+                ) : (
+                    <div className='grid grid-cols-4 gap-3 max-xl:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1'>
+                        {products.map(product => (
+                            <ProductCard
+                                key={product._id}
+                                id={product._id}
+                                imageUrl={product.image[0]}
+                                title={product.judul}
+                                price={parseToRupiah(product.discount)}
+                                discountPrice={parseToRupiah(product.price)}
+                                discount={getPercentageDiscount(
+                                    product.price,
+                                    product.discount
+                                )}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         </>
     )
