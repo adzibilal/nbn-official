@@ -106,9 +106,25 @@ body {
 }
 
 .mobile-menu {
-  @apply max-sm:flex-col max-h-0 h-[0%] p-0 transition-all overflow-hidden;
+  @apply max-sm:flex-col max-sm:max-h-0 max-sm:h-[0%] max-sm:p-0 transition-all overflow-hidden;
 }
 
 .mobile-menu.show {
   @apply max-h-max h-[100%] p-3;
+}
+
+.badge-discount {
+  @apply bg-red-600 w-max px-5 py-1 font-bold text-white mb-2;
+}
+
+.title-detail {
+  @apply text-3xl font-semibold text-zinc-950 mb-3
+}
+
+.list-variation{
+  @apply flex flex-wrap gap-3
+}
+
+.list-variation li{
+  @apply border border-yellow-600 px-2 py-1 text-zinc-950 cursor-pointer hover:bg-yellow-600 hover:text-white
 }
