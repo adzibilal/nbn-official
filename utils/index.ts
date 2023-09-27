@@ -61,3 +61,28 @@ export function toggleDarkmode() {
 export function getStorage(key: string) {
     return localStorage.getItem(key) || ''
 }
+
+export function getPercentageDiscount(price: number, discount: number) {
+    if (price <= 0 || discount <= 0) {
+        return '0% OFF' // Hindari pembagian oleh nol
+    }
+
+    // Hitung persentase diskon
+    const percentage = Math.round(((price - discount) / price) * 100)
+
+    return `${percentage}% OFF`
+}
+
+export function parseToRupiah(number: number) {
+    if (typeof number !== 'number') {
+        return 'Rp0' // Mengembalikan 'Rp0' jika input bukan angka
+    }
+
+    const formatter = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0
+    })
+
+    return formatter.format(number)
+}

@@ -1,6 +1,43 @@
-import Tiptap from "@/components/Tiptap";
+'use client'
+import { IProduct } from '@/models/Product'
+import { getPercentageDiscount, parseToRupiah } from '@/utils'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+
+// Fungsi untuk mengambil data produk berdasarkan ID dari API
+async function fetchProductById(productId: string) {
+    try {
+        const response = await fetch(`/api/products?productId=${productId}`)
+        if (response.ok) {
+            const data = await response.json()
+            return data
+        } else {
+            throw new Error('Failed to fetch product')
+        }
+    } catch (error) {
+        //@ts-ignore
+        throw new Error(error.message)
+    }
+}
 
 export default function Page({ params }: { params: { idProduct: string } }) {
+    const [product, setProduct] = useState<IProduct | null>(null)
+
+    useEffect(() => {
+        fetchProductById(params.idProduct)
+            .then(data => {
+                setProduct(data)
+                console.error(product)
+            })
+            .catch(error => {
+                console.error('Error fetching product:', error)
+            })
+    }, [params.idProduct])
+
+    if (!product) {
+        return <div className='w-full h-screen flex items-center justify-center'><span className="loading loading-bars loading-lg"></span></div>
+    }
+
     return (
         <div className='max-container min-h-screen grid grid-cols-[1.5fr_2fr] max-md:grid-cols-1 py-10 gap-5'>
             <div className='img-product'>
@@ -59,63 +96,42 @@ export default function Page({ params }: { params: { idProduct: string } }) {
             </div>
 
             <div className='desc-product'>
-                <div className='badge-discount'>47% OFF</div>
-                <h1 className="title-detail">Premium Jaket Crop Furry Faux Fur / Jaket bulu wanita</h1>
+                <div className='badge-discount'>
+                    {getPercentageDiscount(product.price, product.discount)}
+                </div>
+                <h1 className='title-detail'>{product.judul}</h1>
                 <div className='flex gap-3 items-baseline mb-4'>
-                    <div className='price text-yellow-600 text-3xl font-semibold'>Rp80.000</div>
-                    <div className='dicount line-through'>Rp150.000</div>
+                    <div className='price text-yellow-600 text-3xl font-semibold'>
+                        {parseToRupiah(product.price - product.discount)}
+                    </div>
+                    <div className='dicount line-through'>
+                        {parseToRupiah(product.price)}
+                    </div>
                 </div>
 
                 <div className='btn-container grid grid-cols-2 w-full gap-3 max-sm:grid-cols-1'>
-                    <div className='btn btn-shopee bg-orange-500 text-white border-none hover:bg-orange-600'>Beli di Shoppe</div>
-                    <div className='btn btn-wa bg-green-600 text-white border-none hover:bg-green-700'>Beli di WhatsApp</div>
+                    <Link href={product.linkShopee} target='_blank'>
+                        <div className='btn btn-shopee bg-orange-500 text-white border-none hover:bg-orange-600 w-full'>
+                            Beli di Shoppe
+                        </div>
+                    </Link>
+                    <Link href={product.linkWhatsApp} target='_blank'>
+                        <div className='btn btn-wa bg-green-600 text-white border-none hover:bg-green-700 w-full'>
+                            Beli di WhatsApp
+                        </div>
+                    </Link>
                 </div>
 
                 <div className='my-3'>
-                    <div className="text-zinc-950 mb-2">Warna :</div>
-                    <ul className="list-variation">
-                        <li>Cream</li>
-                        <li>Light Gray</li>
-                        <li>Lilac</li>
-                        <li>Tosca</li>
-                        <li>Hoodie Kuping</li>
-                        <li>Mocca Burgundy</li>
-                        <li>Broken White</li>
-                        <li>Black</li>
-                        <li>New Cream</li>
-                        <li>Navy</li>
-                        <li>Lilac Muda</li>
-                        <li>Pink Guava</li>
-                        <li>New Pink Guava</li>
-                        <li>Sage Premium</li>
-                        <li>New Broken White</li>
-                        <li>Maroon Premium</li>
+                    <div className='text-zinc-950 mb-2'>Warna :</div>
+                    <ul className='list-variation'>
+                        {product.variant.map((vari, index) => (
+                            <li key={index}>{vari}</li>
+                        ))}
                     </ul>
                 </div>
 
-                <div className=''>
-                    PREMIUIM JAKET BULU / JAKET SHERPA / JAKET KOHER / FAUX FUR
-                    Kualitas Bahan 99% Nyaman digunakan !!! Furry Jacket /
-                    Jacket Crop Korea Bahan : Faux Fur / Bulu Tebal Kancing :
-                    Snap / Baseball Ukuran : All Size LD -/+ 115cm Panjang -/+
-                    50cm (Cutting Oversized & Cropped) Detail lapisan produk:
-                    Lapisan Taslan : untuk warna tosca, lilac, wine dan pink
-                    lavender (Karakter bulu lembut / sherpa) Lapisan Pollar :
-                    untuk warna pink guava, White, cream, maroon Premium, Sage
-                    Premium dan light gray (Karakter bulu sedikit keras / bulu
-                    domba) Lapisan Hyget Super: untuk warna black, mocca
-                    burgundy, new cream, navy, Lilac muda, New BW & New Pink
-                    Guava. (Karakter bulu halus / sherpa)
-                    ———————————————————————— Note: - Warna Tidak Akan 100% Sama
-                    Dengan Foto Karena Faktor Cahaya dan Saturasi Layar HP. -
-                    Tekstur Bulu Setiap Warna Berbeda-beda (Sesuai Tekstur di
-                    Foto) - Untuk Pencucian Pertama Kali akan ada Bulu yang
-                    Rontok, Tetapi Tidak Mempengaruhi Tekstur Bulu. Karena yang
-                    Rontok Adalah Bulu Residu (Bulu Sisa). Dan Biasanya Pada
-                    Pencucian Kedua Bulu Tidak Akan Rontok lagi. #jakethornet
-                    #jaketbulu #jaketcrop #jaketpremium #jaketsherpa
-                </div>
-
+                <div className=''>{product.deskripsi}</div>
             </div>
         </div>
     )
