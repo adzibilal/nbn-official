@@ -20,6 +20,7 @@ const Page: NextPage<Props> = ({}) => {
     const searchParams = useSearchParams()
     const category = searchParams?.get('category') || 'All'
     const [products, setProducts] = useState<Product[]>([])
+    const [loading, setLoading] = useState(true)
     const [totalProducts, setTotalProducts] = useState<number>(0)
     const [totalPages, setTotalPages] = useState<number>(0)
     const [currentPage, setCurrentPage] = useState<number>(1)
@@ -40,6 +41,7 @@ const Page: NextPage<Props> = ({}) => {
                     setTotalProducts(data.totalProducts)
                     setTotalPages(data.totalPages)
                     setCurrentPage(data.currentPage)
+                    setLoading(false)
                 } else {
                     throw new Error('Failed to fetch products')
                 }
@@ -50,6 +52,14 @@ const Page: NextPage<Props> = ({}) => {
 
         fetchData()
     }, [currentPage])
+
+    if (loading) {
+        return (
+            <div className='w-full h-screen flex items-center justify-center'>
+                <span className='loading loading-bars loading-lg'></span>
+            </div>
+        )
+    }
 
     return (
         <>

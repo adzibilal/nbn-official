@@ -81,9 +81,11 @@ export default function Page({ params }: { params: { idProduct: string } }) {
                 <div className='badge-discount'>
                     {getPercentageDiscount(product.price, product.discount)}
                 </div>
-                <div className="flex items-center text-sm gap-3 my-2">
-                    {product.category.map((cat, index)=> (
-                        <div className="" key={index}>{cat}</div>
+                <div className='flex items-center text-sm gap-3 my-2'>
+                    {product.category.map((cat, index) => (
+                        <div className='' key={index}>
+                            {cat}
+                        </div>
                     ))}
                 </div>
                 <h1 className='title-detail'>{product.judul}</h1>
