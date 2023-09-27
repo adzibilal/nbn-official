@@ -8,7 +8,7 @@ interface Props {}
 
 const Page: NextPage<Props> = ({}) => {
     const searchParams = useSearchParams()
-    const category = searchParams.get('category') || 'All'
+    const category = searchParams?.get('category') || 'All'
 
     return (
         <>
