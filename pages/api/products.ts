@@ -7,7 +7,7 @@ connectToDB()
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { method, query } = req
-    const { productId, page, perPage, search } = query
+    const { productId, page, perPage, search, category } = query
     //@ts-ignore
     const pageNumber = parseInt(page) || 1
     //@ts-ignore
@@ -42,6 +42,27 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                         { judul: { $regex: search, $options: 'i' } },
                         { deskripsi: { $regex: search, $options: 'i' } }
                     ]
+                })
+                    .skip((pageNumber - 1) * itemsPerPage)
+                    .limit(itemsPerPage)
+                    .sort({ createdAt: -1 })
+
+                res.status(200).json({
+                    products: paginatedProducts,
+                    totalProducts,
+                    totalPages,
+                    currentPage: pageNumber
+                })
+            } else if (category !== 'All') {
+                // If a category is specified, filter products by category
+                const products = await Product.find({
+                    category: { $in: [category] } // Use $in to check if category exists in the array
+                })
+
+                const totalProducts = products.length
+                const totalPages = Math.ceil(totalProducts / itemsPerPage)
+                const paginatedProducts = await Product.find({
+                    category: { $in: [category] } // Use $in to check if category exists in the array
                 })
                     .skip((pageNumber - 1) * itemsPerPage)
                     .limit(itemsPerPage)

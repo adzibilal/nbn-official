@@ -27,13 +27,14 @@ const Page: NextPage<Props> = ({}) => {
 
     useEffect(() => {
         async function fetchData() {
+            setLoading(true)
             try {
                 const page = currentPage
                 const perPage = 10 // Ubah sesuai kebutuhan
                 const search = '' // Gantilah dengan nilai pencarian yang sesuai
 
                 const response = await fetch(
-                    `/api/products?page=${page}&perPage=${perPage}&search=${search}`
+                    `/api/products?page=${page}&perPage=${perPage}&search=${search}&category=${category}`
                 )
                 if (response.ok) {
                     const data = await response.json()
@@ -51,7 +52,7 @@ const Page: NextPage<Props> = ({}) => {
         }
 
         fetchData()
-    }, [currentPage])
+    }, [currentPage, category])
 
     if (loading) {
         return (

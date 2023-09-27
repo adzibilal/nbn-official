@@ -51,10 +51,12 @@ export interface NavLink {
 
 // Daftar tautan yang akan digunakan di navbar
 export const navLinks: NavLink[] = [
-    { text: 'Sweater', href: '/collections?category=sweater' },
-    { text: 'Jaket', href: '/collections?category=jaket' },
-    { text: 'Rajut', href: '/collections?category=rajut' },
-    { text: 'Dress & One Set', href: '/collections?category=dressoneset' },
-    { text: 'Faux Fur', href: '/collections?category=fauxfur' },
-    { text: 'New Product', href: '/collections?sort=new' }
+    { text: 'All', href: '/collections' },
+    { text: 'Sweater', href: '/collections?category=Sweater' },
+    { text: 'Jaket', href: '/collections?category=Jaket' },
+    { text: 'Rajut', href: '/collections?category=Rajut' },
+    { text: 'Dress', href: '/collections?category=Dress' },
+    { text: 'One Set', href: '/collections?category=One%20Set' },
+    { text: 'Faux Fur', href: '/collections?category=Faux%20Fur' },
+    { text: 'New Product', href: '/collections?category=New%20Product' }
 ]
