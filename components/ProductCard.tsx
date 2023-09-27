@@ -1,6 +1,8 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface ProductCardProps {
+    id: string
     imageUrl: string
     title: string
     price: string
@@ -9,6 +11,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
+    id,
     imageUrl,
     title,
     price,
@@ -17,27 +20,28 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
     return (
         <div className='card-product'>
-            <div className='img-box'>
-                <Image
-                    src={imageUrl}
-                    height={300}
-                    width={300}
-                    alt=''
-                    className='img-card'
-                />
-            </div>
-            <div className='title-card'>{title}</div>
+            <Link href={`/product/${id}`}>
+                <div className='img-box'>
+                    <Image
+                        src={imageUrl}
+                        height={300}
+                        width={300}
+                        alt=''
+                        className='img-card'
+                    />
+                </div>
+                <div className='title-card'>{title}</div>
 
-            <div className='flex items-baseline gap-1'>
-                <div className='price'>{price}</div>
-                {discountPrice &&
-                    discount && (
+                <div className='flex items-baseline gap-1'>
+                    <div className='price'>{price}</div>
+                    {discountPrice && discount && (
                         <>
                             <div className='disc-price'>{discountPrice}</div>
                             <div className='disc-badge'>{discount}</div>
                         </>
                     )}
-            </div>
+                </div>
+            </Link>
         </div>
     )
 }

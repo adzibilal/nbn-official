@@ -1,6 +1,7 @@
 'use client'
 import { IProduct } from '@/models/Product'
 import { getPercentageDiscount, parseToRupiah } from '@/utils'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
@@ -35,63 +36,44 @@ export default function Page({ params }: { params: { idProduct: string } }) {
     }, [params.idProduct])
 
     if (!product) {
-        return <div className='w-full h-screen flex items-center justify-center'><span className="loading loading-bars loading-lg"></span></div>
+        return (
+            <div className='w-full h-screen flex items-center justify-center'>
+                <span className='loading loading-bars loading-lg'></span>
+            </div>
+        )
     }
 
     return (
         <div className='max-container min-h-screen grid grid-cols-[1.5fr_2fr] max-md:grid-cols-1 py-10 gap-5'>
             <div className='img-product'>
                 <div className='carousel w-full'>
-                    <div id='item1' className='carousel-item w-full'>
-                        <img
-                            src='/images/product/premium/1.jpeg'
-                            className='w-full'
-                        />
-                    </div>
-                    <div id='item2' className='carousel-item w-full'>
-                        <img
-                            src='/images/product/premium/2.jpeg'
-                            className='w-full'
-                        />
-                    </div>
-                    <div id='item3' className='carousel-item w-full'>
-                        <img
-                            src='/images/product/premium/3.jpeg'
-                            className='w-full'
-                        />
-                    </div>
-                    <div id='item4' className='carousel-item w-full'>
-                        <img
-                            src='/images/product/premium/4.jpeg'
-                            className='w-full'
-                        />
-                    </div>
+                    {product.image.map((image, index) => (
+                        <div
+                            key={`item${index + 1}`}
+                            id={`item${index + 1}`}
+                            className='carousel-item w-full'>
+                            <Image
+                                src={image}
+                                width={500}
+                                height={500}
+                                alt=''
+                                className='w-full'
+                            />
+                        </div>
+                    ))}
                 </div>
                 <div className='flex justify-center w-full py-2 gap-2'>
-                    <a href='#item1' className=''>
-                        <img
-                            src='/images/product/premium/1.jpeg'
-                            className='w-[90px] h-[90px] object-cover'
-                        />
-                    </a>
-                    <a href='#item2' className=''>
-                        <img
-                            src='/images/product/premium/2.jpeg'
-                            className='w-[90px] h-[90px] object-cover'
-                        />
-                    </a>
-                    <a href='#item3' className=''>
-                        <img
-                            src='/images/product/premium/3.jpeg'
-                            className='w-[90px] h-[90px] object-cover'
-                        />
-                    </a>
-                    <a href='#item4' className=''>
-                        <img
-                            src='/images/product/premium/4.jpeg'
-                            className='w-[90px] h-[90px] object-cover'
-                        />
-                    </a>
+                    {product.image.map((image, index) => (
+                        <a
+                            key={`link${index + 1}`}
+                            href={`#item${index + 1}`}
+                            className=''>
+                            <img
+                                src={image}
+                                className='w-[90px] h-[90px] object-cover'
+                            />
+                        </a>
+                    ))}
                 </div>
             </div>
 
@@ -99,10 +81,15 @@ export default function Page({ params }: { params: { idProduct: string } }) {
                 <div className='badge-discount'>
                     {getPercentageDiscount(product.price, product.discount)}
                 </div>
+                <div className="flex items-center text-sm gap-3 my-2">
+                    {product.category.map((cat, index)=> (
+                        <div className="" key={index}>{cat}</div>
+                    ))}
+                </div>
                 <h1 className='title-detail'>{product.judul}</h1>
                 <div className='flex gap-3 items-baseline mb-4'>
                     <div className='price text-yellow-600 text-3xl font-semibold'>
-                        {parseToRupiah(product.price - product.discount)}
+                        {parseToRupiah(product.discount)}
                     </div>
                     <div className='dicount line-through'>
                         {parseToRupiah(product.price)}

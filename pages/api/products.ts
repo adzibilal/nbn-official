@@ -80,6 +80,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             variant,
             linkShopee,
             linkWhatsApp,
+            category,
             price,
             discount,
             image // Sekarang Anda mengharapkan image sebagai array dari URL gambar
@@ -93,6 +94,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 variant,
                 linkShopee,
                 linkWhatsApp,
+                category,
                 price,
                 discount,
                 image // Simpan array URL gambar langsung ke dalam model produk
@@ -113,6 +115,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             variant,
             linkShopee,
             linkWhatsApp,
+            category,
             price,
             discount
         } = req.body
@@ -125,6 +128,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 variant,
                 linkShopee,
                 linkWhatsApp,
+                category,
                 price,
                 discount
             })

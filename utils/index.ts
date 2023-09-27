@@ -63,12 +63,12 @@ export function getStorage(key: string) {
 }
 
 export function getPercentageDiscount(price: number, discount: number) {
-    if (price <= 0 || discount <= 0) {
-        return '0% OFF' // Hindari pembagian oleh nol
+    if (price <= 0 || discount < 0 || discount >= price) {
+        return '0% OFF' // Hindari pembagian oleh nol atau nilai discount yang tidak valid
     }
 
     // Hitung persentase diskon
-    const percentage = Math.round(((price - discount) / price) * 100)
+    const percentage = Math.round((1 - discount / price) * 100)
 
     return `${percentage}% OFF`
 }
