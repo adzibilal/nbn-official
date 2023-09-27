@@ -11,6 +11,7 @@ const ProductPerCategoryHome: NextPage<Props> = ({}) => {
 
             <div className='grid grid-cols-4 gap-3 max-md:grid-cols-2 max-sm:grid-cols-1'>
                 <ProductCard
+                    id='1'
                     imageUrl='/images/product/1.jpeg'
                     title='Baju Atasan Wanita Terbaru Polo Crop Top Premium'
                     price='Rp54.000'
@@ -18,6 +19,7 @@ const ProductPerCategoryHome: NextPage<Props> = ({}) => {
                     discount='40% OFF'
                 />
                 <ProductCard
+                    id='1'
                     imageUrl='/images/product/1.jpeg'
                     title='Baju Atasan Wanita Terbaru Polo Crop Top Premium'
                     price='Rp54.000'
@@ -25,6 +27,7 @@ const ProductPerCategoryHome: NextPage<Props> = ({}) => {
                     discount='40% OFF'
                 />
                 <ProductCard
+                    id='1'
                     imageUrl='/images/product/1.jpeg'
                     title='Baju Atasan Wanita Terbaru Polo Crop Top Premium'
                     price='Rp54.000'
@@ -32,6 +35,7 @@ const ProductPerCategoryHome: NextPage<Props> = ({}) => {
                     discount='40% OFF'
                 />
                 <ProductCard
+                    id='1'
                     imageUrl='/images/product/1.jpeg'
                     title='Baju Atasan Wanita Terbaru Polo Crop Top Premium'
                     price='Rp54.000'
